@@ -114,7 +114,8 @@ class GitsRunner:
                 if len(stdout) > 0:
                     cmdres['output'] = f'{outprefix}stdout:{Colors.ENDC}\n' + stdout.decode('utf8')
                 if len(stderr) > 0:
-                    this_output = f'{outprefix}>stderr:{Colors.ENDC}\n' + stderr.decode('utf8')
+                    this_output = f'{outprefix}{Colors.RED}stderr:{Colors.ENDC}\n' + \
+                        stderr.decode('utf8')
                     if len(cmdres['output']) > 0:
                         cmdres['output'] = cmdres['output'] + "\n" + this_output
                     else:

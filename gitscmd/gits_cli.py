@@ -59,11 +59,11 @@ def main():
         gitscmd.print_result(result, squeeze_output=not args['all_output'])
     except KeyboardInterrupt:
         print("Aborted.", file=sys.stderr)
-    except gitscmd.GitsFileNotFoundError as e:
-        print("ERROR:", e, file=sys.stderr)
+    except gitscmd.GitsFileNotFoundError as err:
+        print("ERROR:", err, file=sys.stderr)
         sys.exit(1)
-    except Exception as e:
-        print("Something went wrong:", e, file=sys.stderr)
+    except Exception as err:
+        print("Something went wrong:", err, file=sys.stderr)
         sys.exit(2)
 
 
