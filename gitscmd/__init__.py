@@ -97,7 +97,7 @@ class GitsRunner:
         for name, meta in self.repos.items():
             logging.info('[%s]: %s', name, cmdstring)
             logging.debug('%s: %s', name, command)
-            cmdres = {'output': None, 'ok': False}
+            cmdres = {'output': "", 'ok': False}
 
             try:
                 proc = subprocess.Popen(
