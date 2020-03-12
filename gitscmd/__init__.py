@@ -131,7 +131,7 @@ class GitsRunner:
         return result
 
 
-def print_result(result):
+def print_result(result, squeeze_output=True):
     """Print the result from `exec()`, with some "pretty" formatting, and
     squeeze repeating results"""
     prev_output = None
@@ -147,7 +147,7 @@ def print_result(result):
             color = Colors.RED
             symbol = ERROR_SYMBOL
 
-        if this_output == prev_output:
+        if squeeze_output and this_output == prev_output:
             this_output = ' ---||---'
         else:
             prev_output = this_output

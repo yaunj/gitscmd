@@ -18,8 +18,9 @@ def parse_args():
     """Parse arguments, but only look for known options, and only before the
     command to run, so we don't shadow options for e.g. ls"""
 
-    result = {'loglevel': 'WARNING', 'help': False, 'command': None}
+    result = {'loglevel': 'WARNING', 'help': False, 'all_output': False, 'command': None}
     opts = {
+        '-a': ('all_output', True), '--all-output': ('all_output', True),
         '-v': ('loglevel', 'INFO'), '--verbose': ('loglevel', 'INFO'),
         '-d': ('loglevel', 'DEBUG'), '--debug': ('loglevel', 'DEBUG'),
         '-h': ('help', True), '--help': ('help', True),
@@ -55,7 +56,7 @@ def main():
     try:
         runner = gitscmd.GitsRunner()
         result = runner.exec(args['command'])
-        gitscmd.print_result(result)
+        gitscmd.print_result(result, squeeze_output=not args['all_output'])
     except KeyboardInterrupt:
         print("Aborted.", file=sys.stderr)
     except gitscmd.GitsFileNotFoundError as e:
